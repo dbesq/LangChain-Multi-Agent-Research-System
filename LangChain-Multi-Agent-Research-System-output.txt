@@ -1,0 +1,355 @@
+====================================================================================================
+PROJECT EXPORT FOR LLMs
+====================================================================================================
+
+PROJECT INFORMATION:
+--------------------------------------------------
+Project Name: LangChain-Multi-Agent-Research-System
+Generated On: 2026-10-23 07:46:59 (America/Chicago / GMT-05:00)
+Total Files Processed: 13
+Export Tool: Easy Whole Project to Single Text File for LLMs v1.1.0
+Tool Author: Jota / José Guilherme Pandolfi
+
+EXPORT CONFIGURATION:
+--------------------------------------------------
+Language: en
+Max File Size: 1 MB
+Include Hidden Files: false
+Output Format: both
+Notification Level: minimal
+Custom File Name Pattern: {workspaceName}-output
+
+================================================================================
+PROJECT STRUCTURE
+================================================================================
+├── 📁 src/
+│   ├── 📁 agents/
+│   │   ├── 📄 __init__.py
+│   │   └── 📄 agents.py
+│   ├── 📁 pipeline/
+│   │   ├── 📄 __init__.py
+│   │   └── 📄 pipeline.py
+│   ├── 📁 tools/
+│   │   ├── 📄 __init__.py
+│   │   └── 📄 tools.py
+│   └── 📄 __init__.py
+├── 📄 app.py
+├── 📄 demo.excalidraw (1.51 MB)
+├── 📄 LICENSE (11.29 KB)
+├── 📄 main.py
+├── 📄 README.md (315 B)
+└── 📄 requirements.txt (410 B)
+
+================================================================================
+PROJECT STATISTICS
+================================================================================
+Total Files: 13
+Total Directories: 4
+Text Files: 11
+Binary Files: 2
+Total Size: 1.52 MB
+
+FILE TYPES DISTRIBUTION:
+------------------------------
+.py             : 9
+.excalidraw     : 1
+no extension    : 1
+.md             : 1
+.txt            : 1
+
+================================================================================
+FILE CODE CONTENTS
+================================================================================
+
+
+================================================================================
+FILE: src/agents/__init__.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/agents/__init__.py
+Relative Path: src/agents
+Created: 2026-10-23 07:44:56 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:44:56 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: src/agents/agents.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/agents/agents.py
+Relative Path: src/agents
+Created: 2026-10-23 07:45:08 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:45:08 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: src/pipeline/__init__.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/pipeline/__init__.py
+Relative Path: src/pipeline
+Created: 2026-10-23 07:45:19 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:45:19 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: src/pipeline/pipeline.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/pipeline/pipeline.py
+Relative Path: src/pipeline
+Created: 2026-10-23 07:45:25 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:45:25 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: src/tools/__init__.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/tools/__init__.py
+Relative Path: src/tools
+Created: 2026-10-23 07:46:08 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:46:08 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: src/tools/tools.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/tools/tools.py
+Relative Path: src/tools
+Created: 2026-10-23 07:45:45 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:45:45 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: src/__init__.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: src/__init__.py
+Relative Path: src
+Created: 2026-10-23 07:43:00 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:43:00 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: app.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: app.py
+Relative Path: root
+Created: 2026-10-23 07:44:06 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:44:06 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: main.py
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 0 B
+Extension: .py
+Language: python
+Location: main.py
+Relative Path: root
+Created: 2026-10-23 07:46:38 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:46:58 (America/Chicago / GMT-05:00)
+MD5: d41d8cd98f00b204e9800998ecf8427e
+SHA256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+
+================================================================================
+
+
+================================================================================
+FILE: README.md
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 315 B
+Extension: .md
+Language: text
+Location: README.md
+Relative Path: root
+Created: 2026-10-23 07:27:00 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:35:59 (America/Chicago / GMT-05:00)
+MD5: b301713362b5c3b3bdc37095e9984e9f
+SHA256: 5c9a40b5f7700d629a39e2f7cdad55029684e650f9d9ca1fbc1b48ab44cdb006
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+# LangChain-Multi-Agent-Research-System
+conda create -n langagent python=3.12 -y
+
+conda activate langagent
+
+pip install -r requirements.txt
+
+
+
+Use Anaconda Navigator -> Powershell Prompt
+path: PycharmProjects\agentic_ai_fcc\langchain02_multi_agent_research_system\LangChain-Multi-Agent-Research-System
+
+
+================================================================================
+
+
+================================================================================
+FILE: requirements.txt
+================================================================================
+
+FILE INFORMATION:
+----------------------------------------
+Size: 410 B
+Extension: .txt
+Language: text
+Location: requirements.txt
+Relative Path: root
+Created: 2026-10-23 07:36:29 (America/Chicago / GMT-05:00)
+Modified: 2026-10-23 07:36:58 (America/Chicago / GMT-05:00)
+MD5: ccc50073e3e5918aca05776cf5c84c45
+SHA256: fc5fd163578e2e654f191c9e5e734622b010f6a762e164e23d124959a70042bc
+Encoding: ASCII
+
+FILE CONTENT:
+----------------------------------------
+# Core LLM + LangChain ecosystem
+langchain>=0.2.0
+langchain-core>=0.2.0
+langchain-community>=0.2.0
+langchain-openai>=0.1.0
+streamlit>=1.0.0
+
+# Tavily Search Tool
+tavily-python>=0.3.0
+
+# Web scraping
+beautifulsoup4>=4.12.0
+readability-lxml 
+trafilatura
+requests>=2.31.0
+lxml>=5.0.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# Logging / debugging (optional but recommended)
+rich>=13.7.0
+================================================================================
+
+
+================================================================================
+BINARY/EXCLUDED FILES (not included in text content)
+================================================================================
+- demo.excalidraw
+- LICENSE
