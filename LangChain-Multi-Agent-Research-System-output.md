@@ -3,8 +3,8 @@
 ## 📊 Project Information
 
 - **Project Name**: `LangChain-Multi-Agent-Research-System`
-- **Generated On**: 2026-10-23 07:46:59 (America/Chicago / GMT-05:00)
-- **Total Files Processed**: 13
+- **Generated On**: 2026-10-23 22:45:34 (America/Chicago / GMT-05:00)
+- **Total Files Processed**: 16
 - **Export Tool**: Easy Whole Project to Single Text File for LLMs v1.1.0
 - **Tool Author**: Jota / José Guilherme Pandolfi
 
@@ -21,6 +21,8 @@
 
 ```
 ├── 📁 src/
+│   ├── 📁 __pycache__/
+│   │   └── 📄 __init__.cpython-312.pyc (235 B)
 │   ├── 📁 agents/
 │   │   ├── 📄 __init__.py
 │   │   └── 📄 agents.py
@@ -28,14 +30,17 @@
 │   │   ├── 📄 __init__.py
 │   │   └── 📄 pipeline.py
 │   ├── 📁 tools/
+│   │   ├── 📁 __pycache__/
+│   │   │   ├── 📄 __init__.cpython-312.pyc (241 B)
+│   │   │   └── 📄 tools.cpython-312.pyc (3.81 KB)
 │   │   ├── 📄 __init__.py
-│   │   └── 📄 tools.py
+│   │   └── 📄 tools.py (4.21 KB)
 │   └── 📄 __init__.py
 ├── 📄 app.py
 ├── 📄 demo.excalidraw (1.51 MB)
 ├── 📄 LICENSE (11.29 KB)
-├── 📄 main.py
-├── 📄 README.md (315 B)
+├── 📄 main.py (250 B)
+├── 📄 README.md (366 B)
 └── 📄 requirements.txt (410 B)
 ```
 
@@ -61,23 +66,30 @@
 
 | Metric | Count |
 |--------|-------|
-| Total Files | 13 |
-| Total Directories | 4 |
+| Total Files | 16 |
+| Total Directories | 6 |
 | Text Files | 11 |
-| Binary Files | 2 |
-| Total Size | 1.52 MB |
+| Binary Files | 5 |
+| Total Size | 1.53 MB |
 
 ### 📄 File Types Distribution
 
 | Extension | Count |
 |-----------|-------|
 | `.py` | 9 |
+| `.pyc` | 3 |
 | `.excalidraw` | 1 |
 | `no extension` | 1 |
 | `.md` | 1 |
 | `.txt` | 1 |
 
 ## 💻 File Code Contents
+
+## 🚫 Binary/Excluded Files
+
+The following files were not included in the text content:
+
+- `src/__pycache__/__init__.cpython-312.pyc`
 
 ### <a id="📄-src-agents-init-py"></a>📄 `src/agents/__init__.py`
 
@@ -167,6 +179,13 @@
 
 ---
 
+## 🚫 Binary/Excluded Files
+
+The following files were not included in the text content:
+
+- `src/tools/__pycache__/__init__.cpython-312.pyc`
+- `src/tools/__pycache__/tools.cpython-312.pyc`
+
 ### <a id="📄-src-tools-init-py"></a>📄 `src/tools/__init__.py`
 
 **File Info:**
@@ -192,20 +211,155 @@
 ### <a id="📄-src-tools-tools-py"></a>📄 `src/tools/tools.py`
 
 **File Info:**
-- **Size**: 0 B
+- **Size**: 4.21 KB
 - **Extension**: `.py`
 - **Language**: `python`
 - **Location**: `src/tools/tools.py`
 - **Relative Path**: `src/tools`
 - **Created**: 2026-10-23 07:45:45 (America/Chicago / GMT-05:00)
-- **Modified**: 2026-10-23 07:45:45 (America/Chicago / GMT-05:00)
-- **MD5**: `d41d8cd98f00b204e9800998ecf8427e`
-- **SHA256**: `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+- **Modified**: 2026-10-23 22:44:31 (America/Chicago / GMT-05:00)
+- **MD5**: `08ee51e565a5460869b10bc118923bbc`
+- **SHA256**: `fcc089dac284240006d7fc407b60275a385d8f5949e9eaafd65cd5e688efb3fc`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```python
+from langchain.tools import tool
+import requests
+from dotenv import load_dotenv
+import os
+from tavily import TavilyClient
+from rich import print
+from bs4 import BeautifulSoup
+from readability import Document
+import trafilatura
+import re
+
+load_dotenv()
+
+tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY")) 
+
+@tool
+def web_search(query:str) -> str:
+    """Search web f/ given query and return results"""
+    results = tavily.search(query=query, max_results=5)
+
+    print(results)
+
+    out = []
+
+    for r in results['results']:
+        out.append(
+            f"Title: {r['title']}\nURL: {r['url']}\nSnippet: {r['content'][:300]}"
+        )
+
+    return "\n-----\n".join(out)
+
+@tool
+def scrape_url(url: str) -> str:
+    """
+    Scrape and extract clean readable content from a URL.
+    Uses multiple extraction strategies for better reliability.
+    """
+
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/124.0 Safari/537.36"
+        ),
+        "Accept-Language": "en-US,en;q=0.9",
+        "Referer": "https://www.google.com/",
+    }
+
+    try:
+        # ── Fetch page ─────────────────────────────────────
+        response = requests.get(
+            url,
+            headers=headers,
+            timeout=15
+        )
+
+        response.raise_for_status()
+
+        html = response.text
+
+        # ──────────────────────────────────────────────────
+        # Strategy 1 → trafilatura (BEST for articles/blogs)
+        # ──────────────────────────────────────────────────
+        extracted = trafilatura.extract(
+            html,
+            include_comments=False,
+            include_tables=False
+        )
+
+        if extracted and len(extracted.strip()) > 200:
+            cleaned = re.sub(r'\s+', ' ', extracted)
+            return cleaned[:5000]
+
+        # ──────────────────────────────────────────────────
+        # Strategy 2 → readability
+        # ──────────────────────────────────────────────────
+        doc = Document(html)
+        clean_html = doc.summary()
+
+        soup = BeautifulSoup(clean_html, "html.parser")
+
+        for tag in soup([
+            "script",
+            "style",
+            "nav",
+            "footer",
+            "header",
+            "aside",
+            "form"
+        ]):
+            tag.decompose()
+
+        text = soup.get_text(separator=" ", strip=True)
+
+        if text and len(text.strip()) > 200:
+            cleaned = re.sub(r'\s+', ' ', text)
+            return cleaned[:5000]
+
+        # ──────────────────────────────────────────────────
+        # Strategy 3 → fallback full page extraction
+        # ──────────────────────────────────────────────────
+        soup = BeautifulSoup(html, "html.parser")
+
+        for tag in soup([
+            "script",
+            "style",
+            "nav",
+            "footer",
+            "header",
+            "aside",
+            "form"
+        ]):
+            tag.decompose()
+
+        text = soup.get_text(separator=" ", strip=True)
+
+        cleaned = re.sub(r'\s+', ' ', text)
+
+        if cleaned:
+            return cleaned[:5000]
+
+        return "Could not extract meaningful content from the page."
+
+    except requests.exceptions.Timeout:
+        return "Request timed out while scraping the URL."
+
+    except requests.exceptions.HTTPError as e:
+        return f"HTTP error occurred: {str(e)}"
+
+    except Exception as e:
+        return f"Could not scrape URL: {str(e)}"
+
+
+
+
 
 ```
 
@@ -258,20 +412,28 @@
 ### <a id="📄-main-py"></a>📄 `main.py`
 
 **File Info:**
-- **Size**: 0 B
+- **Size**: 250 B
 - **Extension**: `.py`
 - **Language**: `python`
 - **Location**: `main.py`
 - **Relative Path**: `root`
 - **Created**: 2026-10-23 07:46:38 (America/Chicago / GMT-05:00)
-- **Modified**: 2026-10-23 07:46:58 (America/Chicago / GMT-05:00)
-- **MD5**: `d41d8cd98f00b204e9800998ecf8427e`
-- **SHA256**: `e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`
+- **Modified**: 2026-10-23 22:45:34 (America/Chicago / GMT-05:00)
+- **MD5**: `6f1fa3461246b6f87eb131c482f84ffc`
+- **SHA256**: `dbaca147fa0d2ce0fd7c4a61db22395d4c84a9fbb46671190f98fed74acd9860`
 - **Encoding**: ASCII
 
 **File code content:**
 
 ```python
+from src.tools.tools import web_search, scrape_url
+
+results = web_search.invoke("what is the latest research on climate change mitigation?")
+
+# results = scrape_url("https://techcrunch.com/category/artificial-intelligence/")
+
+print(results)
+
 
 ```
 
@@ -280,15 +442,15 @@
 ### <a id="📄-readme-md"></a>📄 `README.md`
 
 **File Info:**
-- **Size**: 315 B
+- **Size**: 366 B
 - **Extension**: `.md`
 - **Language**: `text`
 - **Location**: `README.md`
 - **Relative Path**: `root`
 - **Created**: 2026-10-23 07:27:00 (America/Chicago / GMT-05:00)
-- **Modified**: 2026-10-23 07:35:59 (America/Chicago / GMT-05:00)
-- **MD5**: `b301713362b5c3b3bdc37095e9984e9f`
-- **SHA256**: `5c9a40b5f7700d629a39e2f7cdad55029684e650f9d9ca1fbc1b48ab44cdb006`
+- **Modified**: 2026-10-23 07:49:45 (America/Chicago / GMT-05:00)
+- **MD5**: `98d16792c10643540109abd9a35c4207`
+- **SHA256**: `251470258a7ee4bc750cd955727c2f07ee5d5a3a26994a9556ffd2f9f9807642`
 - **Encoding**: ASCII
 
 **File code content:**
@@ -306,7 +468,7 @@ pip install -r requirements.txt
 Use Anaconda Navigator -> Powershell Prompt
 path: PycharmProjects\agentic_ai_fcc\langchain02_multi_agent_research_system\LangChain-Multi-Agent-Research-System
 
-
+https://www.youtube.com/watch?v=Zy7EXDONlTY 5.25.28
 ````
 
 ---
